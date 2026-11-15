@@ -29,6 +29,11 @@ spring:
     consumer:
       group-id: ms-rutaexpress-report
 
+rutaexpress:
+  kafka:
+    dlt-topic: report.DLT
+    concurrency: 3
+
 server:
   port: 8084
 
@@ -38,6 +43,8 @@ security:
     audience: ${API_CLIENT_ID}
 
 logging:
+  pattern:
+    level: "%5p [traceId=%X{traceId:-} eventId=%X{eventId:-} %X{topic:-}-%X{partition:-}@%X{offset:-}]"
   level:
     cl.rutaexpress.report: INFO
     org.springframework.security: WARN
